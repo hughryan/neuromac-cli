@@ -5,6 +5,7 @@ A portable cyberpunk CLI toolkit for macOS. Dark void aesthetics, neon resonance
 **Includes:**
 - **Ghostty** — terminal with custom neuromancer theme
 - **Helix** — modal terminal editor, neuromancer-themed
+- **VS Code** — neuromancer color + token theme, Monaspace Neon NF font
 - **Starship** — fast, minimal prompt with neuromancer colors
 - **bat** — syntax-highlighted `cat` replacement
 - **eza** — modern `ls` with icons and git status
@@ -52,6 +53,10 @@ The agent will inspect your current dotfiles, identify conflicts, and guide you 
 If you prefer to apply configs directly without reconciliation:
 
 ```sh
+# VS Code
+VSCODE_USER="$HOME/Library/Application Support/Code/User"
+ln -sf "$(pwd)/config/vscode-settings.json" "$VSCODE_USER/settings.json"
+
 # Ghostty
 mkdir -p ~/.config/ghostty/themes
 ln -sf "$(pwd)/config/ghostty/config"             ~/.config/ghostty/config
@@ -127,6 +132,17 @@ If you use `uv` or another tool that doesn't set `PYENV_VERSION`, you may need:
 ```sh
 export PYENV_VERSION=system  # in ~/.zshenv or your personal zshrc
 ```
+
+---
+
+## VS Code
+
+neuromac-cli ships a `config/vscode-settings.json` that applies the neuromancer theme and font to VS Code. It requires two extensions (installed automatically via the Brewfile):
+
+- **One Dark Pro** (`zhuangtongfa.material-theme`) — base theme, overridden with neuromancer colors
+- **Material Icon Theme** (`pkief.material-icon-theme`) — file icons
+
+The settings file covers theme, color customizations, token colors, and font. It intentionally omits personal editor preferences (tab size, autoSave, language-specific settings) — add those yourself on top.
 
 ---
 

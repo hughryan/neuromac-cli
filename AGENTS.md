@@ -21,6 +21,7 @@ The user wants to adopt neuromac-cli. Help them reconcile the configs in this re
 ### 1. Audit existing configs
 
 Check which of these exist and read their current content:
+- `~/Library/Application Support/Code/User/settings.json`
 - `~/.config/ghostty/config`
 - `~/.config/ghostty/themes/neuromancer`
 - `~/.config/helix/config.toml`
@@ -43,6 +44,8 @@ For each config that already exists, diff it against the version in this repo. H
 - Missing sections that neuromac-cli adds (safe to add)
 
 ### 4. Apply changes
+
+- For **VS Code**: check if VS Code is installed. If so, symlink `config/vscode-settings.json` to `~/Library/Application Support/Code/User/settings.json`. If the user already has a settings.json, merge — keep their personal preferences (tab size, autoSave, extension settings, language overrides) and apply the neuromancer color/token blocks and font. The required keys are `workbench.colorTheme`, `workbench.colorCustomizations`, `editor.tokenColorCustomizations`, `editor.fontFamily`, `editor.fontLigatures`.
 
 - For **new configs** (nothing currently exists): symlink directly.
 - For **zshrc**: do NOT replace. Source the neuromac-cli zshrc from the existing one:
@@ -76,6 +79,7 @@ After applying:
 
 ```
 config/
+  vscode-settings.json          # VS Code neuromancer theme + font (symlink or merge)
   ghostty/
     config                    # terminal settings
     themes/neuromancer        # 16-color ANSI palette

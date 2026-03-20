@@ -1,0 +1,85 @@
+{
+    // ── Telemetry ──────────────────────────────────────────────────────────
+    "telemetry.telemetryLevel": "off",
+    "redhat.telemetry.enabled": false,
+
+    // ── Appearance ─────────────────────────────────────────────────────────
+    "workbench.colorTheme": "One Dark Pro",
+    "workbench.iconTheme": "material-icon-theme",
+
+    "workbench.colorCustomizations": {
+        "[One Dark Pro]": {
+            "editor.background":                    "#0d0f12",
+            "editor.foreground":                    "#8899aa",
+            "editor.lineHighlightBackground":       "#1a2535",
+            "editor.selectionBackground":           "#1e2a42",
+            "editor.inactiveSelectionBackground":   "#1a2535",
+            "editorCursor.foreground":              "#00e8d8",
+            "editorLineNumber.foreground":          "#3a4a5c",
+            "editorLineNumber.activeForeground":    "#8899aa",
+            "activityBar.background":               "#0a0c0f",
+            "activityBar.foreground":               "#8899aa",
+            "sideBar.background":                   "#0a0c0f",
+            "sideBar.foreground":                   "#8899aa",
+            "sideBarSectionHeader.background":      "#0d0f12",
+            "editorGroupHeader.tabsBackground":     "#0a0c0f",
+            "tab.activeBackground":                 "#0d0f12",
+            "tab.inactiveBackground":               "#0a0c0f",
+            "tab.activeForeground":                 "#ebebef",
+            "tab.inactiveForeground":               "#3a4a5c",
+            "titleBar.activeBackground":            "#0a0c0f",
+            "titleBar.activeForeground":            "#8899aa",
+            "titleBar.inactiveBackground":          "#0a0c0f",
+            "statusBar.background":                 "#0a0c0f",
+            "statusBar.foreground":                 "#8899aa",
+            "statusBar.noFolderBackground":         "#0a0c0f",
+            "panel.background":                     "#0d0f12",
+            "terminal.background":                  "#0d0f12",
+            "terminal.foreground":                  "#8899aa"
+        }
+    },
+
+    "editor.tokenColorCustomizations": {
+        "[One Dark Pro]": {
+            "textMateRules": [
+                {
+                    "scope": ["keyword", "keyword.control", "storage.type", "storage.modifier"],
+                    "settings": { "foreground": "#00e8d8", "fontStyle": "bold" }
+                },
+                {
+                    "scope": ["entity.name.function", "support.function", "meta.function-call"],
+                    "settings": { "foreground": "#50ffaa" }
+                },
+                {
+                    "scope": ["string", "string.quoted", "string.template"],
+                    "settings": { "foreground": "#ffe066" }
+                },
+                {
+                    "scope": ["entity.name.type", "entity.name.class", "support.class", "support.type"],
+                    "settings": { "foreground": "#e07aff" }
+                },
+                {
+                    "scope": ["constant.numeric", "constant.language", "constant.other"],
+                    "settings": { "foreground": "#ff6090" }
+                },
+                {
+                    "scope": ["variable.parameter"],
+                    "settings": { "foreground": "#4db8ff" }
+                },
+                {
+                    "scope": ["comment", "punctuation.definition.comment"],
+                    "settings": { "foreground": "#3a4a5c", "fontStyle": "italic" }
+                },
+                {
+                    "scope": ["variable", "variable.other"],
+                    "settings": { "foreground": "#8899aa" }
+                }
+            ]
+        }
+    },
+
+    // ── Font ───────────────────────────────────────────────────────────────
+    "editor.fontFamily": "MonaspaceNeonNF-Regular, Menlo, Monaco, monospace",
+    "editor.fontSize": 14,
+    "editor.fontLigatures": true
+}

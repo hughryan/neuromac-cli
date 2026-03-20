@@ -20,4 +20,9 @@ brew "asdf"
 
 # Casks
 cask "ghostty"
+cask "visual-studio-code"
 cask "font-monaspice-nerd-font"
+
+# VS Code extensions — neuromancer theme
+vscode "zhuangtongfa.material-theme"
+vscode "pkief.material-icon-theme"
