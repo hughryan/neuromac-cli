@@ -5,8 +5,8 @@ font-size = 13
 font-thicken = false
 
 copy-on-select = clipboard
-background-blur = macos-glass-clear
-background-opacity = 85
+background-blur = macos-glass-regular
+background-opacity = 0.85
 
 # Key bindings
 keybind = opt+shift+minus=text:—
