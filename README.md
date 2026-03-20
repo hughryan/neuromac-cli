@@ -98,11 +98,44 @@ The included `gitconfig` uses `[include] path = ~/.gitconfig-personal` for your 
 
 ---
 
+## Language version modules in Starship
+
+The neuromac-cli Starship config intentionally omits language version modules (Python, Node, Go, Rust, etc.) — they depend on which version manager you use, and misconfigured shims can cause prompt hangs.
+
+To add language modules, append them to your `~/.config/starship.toml` after the neuromac-cli config is applied. See the [Starship module docs](https://starship.rs/config/) for all available modules. All neuromac-cli colors are defined below as a reference for matching the theme:
+
+| Color | Hex | Suggested use |
+|---|---|---|
+| neon cyan | `#00e8d8` | default / system |
+| neon green | `#50ffaa` | Node.js, Go |
+| neon amber | `#ffe066` | Python, warnings |
+| neon pink | `#ff6090` | Rust, errors |
+| neon purple | `#e07aff` | Terraform, git branch |
+| neon blue | `#4db8ff` | Kubernetes, Docker |
+
+Example Python module (for pyenv or uv users):
+
+```toml
+# add to format string: $python
+[python]
+symbol = " "
+style  = "bold #ffe066"
+format = "[${symbol}${pyenv_prefix}(${version})( \\($virtualenv\\))]($style) "
+```
+
+If you use `uv` or another tool that doesn't set `PYENV_VERSION`, you may need:
+```sh
+export PYENV_VERSION=system  # in ~/.zshenv or your personal zshrc
+```
+
+---
+
 ## What this does NOT include
 
 Things that are intentionally excluded (add them yourself or use a personal dotfiles layer on top):
 
-- Language version managers for specific stacks (nvm, pyenv, etc.)
+- Language version managers (nvm, pyenv, uv, rbenv, etc.)
+- Language version modules in Starship (add these yourself — see above)
 - Cloud SDK integrations (gcloud, AWS, etc.)
 - Kubernetes / Terraform / Docker tooling
 - SSH configuration

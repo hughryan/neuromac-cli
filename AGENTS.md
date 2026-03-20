@@ -53,7 +53,7 @@ For each config that already exists, diff it against the version in this repo. H
 - For **gitconfig**: symlink neuromac-cli's gitconfig as `~/.gitconfig`, then create `~/.gitconfig-personal` with the user's `[user]` block. The neuromac-cli gitconfig `[include]`s this file.
 - For **Ghostty config**: if they have personal settings (window size, working directory, etc.), preserve them. The theme and font settings can be adopted directly.
 - For **Helix**: safe to replace if they don't have customizations. If they do, merge the theme and key settings.
-- For **Starship**: if they have a custom prompt, show them the neuromac-cli config and let them decide which modules to keep.
+- For **Starship**: symlink neuromac-cli's `starship.toml` as `~/.config/starship.toml`. This config intentionally has no language modules — they are stack-specific and must be added by the user (see "Language modules" below).
 
 ### 5. Font
 
@@ -91,6 +91,70 @@ config/
 Brewfile                      # all packages
 AGENTS.md                     # this file (CLAUDE.md symlinks here)
 ```
+
+## Language modules for Starship
+
+The neuromac-cli `starship.toml` has no language version modules. This is intentional — language modules depend on version managers (pyenv, nvm, uv, rbenv, etc.) and misconfigured shims cause prompt hangs.
+
+When helping a user adopt neuromac-cli, **ask them which languages and version managers they use**, then add the appropriate modules to their `~/.config/starship.toml`.
+
+Full module reference: https://starship.rs/config/
+
+### Adding a module
+
+1. Add the module name to the `format` string (e.g. `$python`)
+2. Add the module config block. Use neuromac-cli theme colors:
+   - Python/warnings: `#ffe066` (neon amber)
+   - Node.js/Go: `#50ffaa` (neon green)
+   - Rust/errors: `#ff6090` (neon pink)
+   - Kubernetes/Docker: `#4db8ff` (neon blue)
+   - Terraform: `#e07aff` (neon purple)
+
+### Common module configs
+
+```toml
+[python]
+symbol = " "
+style  = "bold #ffe066"
+format = "[${symbol}${pyenv_prefix}(${version})( \\($virtualenv\\))]($style) "
+
+[nodejs]
+symbol = " "
+style  = "bold #50ffaa"
+format = "[$symbol$version]($style) "
+
+[golang]
+symbol = " "
+style  = "bold #44f5e5"
+format = "[$symbol$version]($style) "
+
+[rust]
+symbol = " "
+style  = "bold #ff6090"
+format = "[$symbol$version]($style) "
+
+[terraform]
+symbol = "󱁢 "
+style  = "bold #e07aff"
+format = "[$symbol$workspace]($style) "
+
+[kubernetes]
+symbol   = "⎈ "
+style    = "bold #4db8ff"
+format   = "[$symbol$context( \\($namespace\\))]($style) "
+disabled = false
+
+[docker_context]
+symbol = " "
+style  = "bold #4db8ff"
+format = "[$symbol$context]($style) "
+```
+
+### Version manager gotchas
+
+- **pyenv**: if `pyenv` is installed but no global version is set, shims time out. Fix: `export PYENV_VERSION=system` in `~/.zshenv`.
+- **uv**: does not set `PYENV_VERSION`. The `pyenv_prefix` field in the Python module will be empty — that's fine.
+- **nvm**: lazy-loaded nvm won't expose a Node version to starship unless nvm is fully initialized. Consider eager-loading nvm or using asdf for Node.
 
 ## What NOT to touch
 

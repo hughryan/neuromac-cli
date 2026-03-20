@@ -4,9 +4,10 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 add_newline = true
+command_timeout = 200
 
 format = """
-$directory$git_branch$git_status$nodejs$python$golang$rust$fill$cmd_duration$time
+$directory$git_branch$git_status$fill$cmd_duration$time
 $character"""
 
 [fill]
@@ -50,27 +51,6 @@ deleted    = "✗${count}"
 renamed    = "»"
 stashed    = "≡"
 conflicted = "⚡"
-
-# ── Languages / runtimes ─────────────────────────────────────
-[nodejs]
-symbol = " "
-style  = "bold #50ffaa"
-format = "[$symbol$version]($style) "
-
-[python]
-symbol = " "
-style  = "bold #ffe066"
-format = "[${symbol}${pyenv_prefix}(${version})( \\($virtualenv\\))]($style) "
-
-[golang]
-symbol = " "
-style  = "bold #44f5e5"
-format = "[$symbol$version]($style) "
-
-[rust]
-symbol = " "
-style  = "bold #ff6090"
-format = "[$symbol$version]($style) "
 
 # ── Right side ───────────────────────────────────────────────
 [cmd_duration]
