@@ -7,6 +7,8 @@ font-thicken = false
 copy-on-select = clipboard
 background-blur = macos-glass-regular
 background-opacity = 0.85
+scrollback-limit = 100000000
+scroll-to-bottom = keystroke
 
 # Key bindings
 keybind = opt+shift+minus=text:—

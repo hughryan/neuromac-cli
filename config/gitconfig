@@ -1,3 +1,4 @@
+# Personal identity (included first — repo settings below take precedence on conflicts)
 [include]
     path = ~/.gitconfig-personal
 
