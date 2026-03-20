@@ -1,0 +1,12 @@
+theme = neuromancer
+
+font-family = MonaspaceNeonNF-Regular
+font-size = 13
+font-thicken = false
+
+copy-on-select = clipboard
+background-blur = macos-glass-clear
+background-opacity = 85
+
+# Key bindings
+keybind = opt+shift+minus=text:—

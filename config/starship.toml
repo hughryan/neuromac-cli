@@ -1,0 +1,86 @@
+# neuromancer — starship config
+# matched to ghostty neuromancer theme
+
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = true
+
+format = """
+$directory$git_branch$git_status$nodejs$python$golang$rust$fill$cmd_duration$time
+$character"""
+
+[fill]
+symbol = "─"
+style = "#1a2535"
+
+[character]
+success_symbol = "[▶](bold #00e8d8)"
+error_symbol   = "[▶](bold #ff2055)"
+vimcmd_symbol  = "[λ](bold #e07aff)"
+
+[package]
+disabled = true
+
+# ── Directory ────────────────────────────────────────────────
+[directory]
+style             = "bold #44f5e5"
+truncation_length = 4
+truncate_to_repo  = true
+read_only         = "  "
+read_only_style   = "#ff6090"
+format            = "[$path]($style)[$read_only]($read_only_style) "
+
+# ── Git ──────────────────────────────────────────────────────
+[git_branch]
+symbol = " "
+style  = "bold #e07aff"
+format = "[$symbol$branch]($style) "
+
+[git_status]
+style      = "bold #ff6090"
+format     = '([$all_status$ahead_behind]($style) )'
+up_to_date = "[✓](#50ffaa)"
+ahead      = "⇡${count}"
+behind     = "⇣${count}"
+diverged   = "⇕${ahead_count}⇣${behind_count}"
+modified   = "!${count}"
+staged     = "+${count}"
+untracked  = "?${count}"
+deleted    = "✗${count}"
+renamed    = "»"
+stashed    = "≡"
+conflicted = "⚡"
+
+# ── Languages / runtimes ─────────────────────────────────────
+[nodejs]
+symbol = " "
+style  = "bold #50ffaa"
+format = "[$symbol$version]($style) "
+
+[python]
+symbol = " "
+style  = "bold #ffe066"
+format = "[${symbol}${pyenv_prefix}(${version})( \\($virtualenv\\))]($style) "
+
+[golang]
+symbol = " "
+style  = "bold #44f5e5"
+format = "[$symbol$version]($style) "
+
+[rust]
+symbol = " "
+style  = "bold #ff6090"
+format = "[$symbol$version]($style) "
+
+# ── Right side ───────────────────────────────────────────────
+[cmd_duration]
+min_time          = 2_000
+style             = "#ffd200"
+format            = "[ $duration]($style) "
+show_milliseconds = false
+
+[time]
+disabled    = false
+style       = "dimmed #8899aa"
+format      = "[$time]($style)"
+time_format = "%H:%M"

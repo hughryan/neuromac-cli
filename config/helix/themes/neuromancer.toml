@@ -1,0 +1,172 @@
+# neuromancer — helix theme
+# matched to ghostty neuromancer terminal theme
+
+# ── UI ────────────────────────────────────────────────────────────────────────
+
+"ui.background"            = { bg = "bg" }
+"ui.background.separator"  = { fg = "surface2" }
+"ui.text"                  = { fg = "fg" }
+"ui.text.focus"            = { fg = "bright_white" }
+
+"ui.cursor"                = { fg = "bg", bg = "neon_cyan" }
+"ui.cursor.primary"        = { fg = "bg", bg = "neon_cyan" }
+"ui.cursor.insert"         = { fg = "bg", bg = "neon_green" }
+"ui.cursor.select"         = { fg = "bg", bg = "neon_purple" }
+"ui.cursor.match"          = { fg = "bg", bg = "neon_amber", modifiers = ["bold"] }
+
+"ui.selection"             = { bg = "selection" }
+"ui.selection.primary"     = { bg = "selection" }
+
+"ui.cursorline.primary"    = { bg = "surface" }
+"ui.cursorline.secondary"  = { bg = "bg" }
+
+"ui.linenr"                = { fg = "dim" }
+"ui.linenr.selected"       = { fg = "fg", modifiers = ["bold"] }
+
+"ui.statusline"            = { fg = "fg", bg = "surface2" }
+"ui.statusline.inactive"   = { fg = "dim", bg = "bg_dark" }
+"ui.statusline.normal"     = { fg = "bg", bg = "neon_cyan",    modifiers = ["bold"] }
+"ui.statusline.insert"     = { fg = "bg", bg = "neon_green",   modifiers = ["bold"] }
+"ui.statusline.select"     = { fg = "bg", bg = "neon_purple",  modifiers = ["bold"] }
+"ui.statusline.separator"  = { fg = "dim" }
+
+"ui.popup"                 = { fg = "fg",      bg = "surface" }
+"ui.popup.info"            = { fg = "neon_blue", bg = "surface" }
+"ui.window"                = { fg = "surface2" }
+"ui.help"                  = { fg = "fg",      bg = "surface" }
+
+"ui.menu"                  = { fg = "fg",       bg = "surface" }
+"ui.menu.selected"         = { fg = "bg",       bg = "neon_cyan" }
+"ui.menu.scroll"           = { fg = "dim",      bg = "surface" }
+
+"ui.gutter"                = { bg = "bg" }
+"ui.gutter.selected"       = { bg = "surface" }
+
+"ui.highlight"             = { bg = "surface2", modifiers = ["bold"] }
+"ui.highlight.frameline"   = { bg = "surface" }
+
+"ui.virtual.ruler"         = { bg = "surface" }
+"ui.virtual.whitespace"    = { fg = "dim" }
+"ui.virtual.indent-guide"  = { fg = "surface2" }
+"ui.virtual.inlay-hint"    = { fg = "dim", bg = "bg" }
+"ui.virtual.jump-label"    = { fg = "neon_pink", modifiers = ["bold"] }
+
+# ── Diagnostics ───────────────────────────────────────────────────────────────
+
+"diagnostic.error"         = { underline = { color = "neon_red",   style = "curl" } }
+"diagnostic.warning"       = { underline = { color = "neon_amber", style = "curl" } }
+"diagnostic.info"          = { underline = { color = "neon_blue",  style = "curl" } }
+"diagnostic.hint"          = { underline = { color = "dim",        style = "curl" } }
+"diagnostic.unnecessary"   = { modifiers = ["dim"] }
+"diagnostic.deprecated"    = { modifiers = ["crossed_out"] }
+
+"error"   = { fg = "neon_red" }
+"warning" = { fg = "neon_amber" }
+"info"    = { fg = "neon_blue" }
+"hint"    = { fg = "dim" }
+
+# ── Diff ──────────────────────────────────────────────────────────────────────
+
+"diff.plus"         = { fg = "neon_green" }
+"diff.minus"        = { fg = "neon_red" }
+"diff.delta"        = { fg = "neon_blue" }
+"diff.plus.gutter"  = { fg = "neon_green" }
+"diff.minus.gutter" = { fg = "neon_red" }
+"diff.delta.gutter" = { fg = "neon_blue" }
+
+# ── Markup ────────────────────────────────────────────────────────────────────
+
+"markup.heading"           = { fg = "neon_cyan",   modifiers = ["bold"] }
+"markup.heading.1"         = { fg = "neon_cyan",   modifiers = ["bold"] }
+"markup.heading.2"         = { fg = "neon_purple", modifiers = ["bold"] }
+"markup.heading.3"         = { fg = "neon_green",  modifiers = ["bold"] }
+"markup.bold"              = { modifiers = ["bold"] }
+"markup.italic"            = { modifiers = ["italic"] }
+"markup.strikethrough"     = { modifiers = ["crossed_out"] }
+"markup.link.url"          = { fg = "neon_blue",  modifiers = ["underlined"] }
+"markup.link.text"         = { fg = "neon_cyan" }
+"markup.raw"               = { fg = "neon_amber" }
+"markup.raw.block"         = { fg = "neon_amber" }
+"markup.list"              = { fg = "neon_pink" }
+
+# ── Syntax ────────────────────────────────────────────────────────────────────
+
+"comment"                  = { fg = "dim",  modifiers = ["italic"] }
+"comment.block.documentation" = { fg = "dim2", modifiers = ["italic"] }
+
+"constant"                 = { fg = "neon_pink" }
+"constant.numeric"         = { fg = "neon_pink" }
+"constant.character"       = { fg = "neon_amber" }
+"constant.character.escape" = { fg = "neon_cyan" }
+"constant.builtin"         = { fg = "neon_pink", modifiers = ["bold"] }
+
+"string"                   = { fg = "neon_amber" }
+"string.special"           = { fg = "neon_cyan" }
+"string.special.url"       = { fg = "neon_blue", modifiers = ["underlined"] }
+"string.regexp"            = { fg = "neon_cyan" }
+
+"type"                     = { fg = "neon_purple" }
+"type.builtin"             = { fg = "neon_purple", modifiers = ["bold"] }
+"type.parameter"           = { fg = "neon_blue" }
+
+"constructor"              = { fg = "neon_purple" }
+
+"variable"                 = { fg = "fg" }
+"variable.builtin"         = { fg = "neon_pink",  modifiers = ["italic"] }
+"variable.parameter"       = { fg = "neon_blue" }
+"variable.other.member"    = { fg = "bright_cyan" }
+
+"label"                    = { fg = "neon_cyan" }
+"namespace"                = { fg = "neon_blue" }
+"attribute"                = { fg = "neon_amber" }
+"special"                  = { fg = "neon_cyan" }
+
+"keyword"                  = { fg = "neon_cyan",  modifiers = ["bold"] }
+"keyword.control"          = { fg = "neon_cyan",  modifiers = ["bold"] }
+"keyword.control.return"   = { fg = "neon_pink",  modifiers = ["bold"] }
+"keyword.control.exception" = { fg = "neon_pink", modifiers = ["bold"] }
+"keyword.operator"         = { fg = "neon_cyan" }
+"keyword.directive"        = { fg = "neon_purple" }
+"keyword.function"         = { fg = "neon_cyan",  modifiers = ["bold"] }
+"keyword.storage.type"     = { fg = "neon_cyan",  modifiers = ["bold"] }
+"keyword.storage.modifier" = { fg = "neon_cyan" }
+
+"operator"                 = { fg = "neon_cyan" }
+
+"function"                 = { fg = "neon_green" }
+"function.builtin"         = { fg = "neon_green", modifiers = ["bold"] }
+"function.method"          = { fg = "neon_green" }
+"function.macro"           = { fg = "neon_cyan" }
+"function.special"         = { fg = "neon_cyan" }
+
+"punctuation"              = { fg = "dim2" }
+"punctuation.bracket"      = { fg = "dim2" }
+"punctuation.delimiter"    = { fg = "dim2" }
+"punctuation.special"      = { fg = "neon_cyan" }
+
+"tag"                      = { fg = "neon_cyan" }
+"tag.builtin"              = { fg = "neon_cyan",  modifiers = ["bold"] }
+"tag.attribute"            = { fg = "neon_amber" }
+
+# ── Palette ───────────────────────────────────────────────────────────────────
+
+[palette]
+bg           = "#0d0f12"
+bg_dark      = "#0a0c0f"
+fg           = "#8899aa"
+bright_white = "#ebebef"
+
+surface      = "#1a2535"
+surface2     = "#1e2530"
+dim          = "#3a4a5c"
+dim2         = "#6a7a8a"
+selection    = "#1e2a42"
+
+neon_cyan    = "#00e8d8"
+bright_cyan  = "#44f5e5"
+neon_green   = "#50ffaa"
+neon_pink    = "#ff6090"
+neon_red     = "#ff2055"
+neon_purple  = "#e07aff"
+neon_blue    = "#4db8ff"
+neon_amber   = "#ffe066"

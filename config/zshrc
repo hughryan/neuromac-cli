@@ -1,0 +1,43 @@
+# Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# asdf
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+
+export PATH="$HOME/.local/bin:$PATH"
+
+# Key bindings
+bindkey "^[[H" beginning-of-line  # Fn+Left  (Home)
+bindkey "^[[F" end-of-line        # Fn+Right (End)
+
+# Aliases — navigation
+alias ls='eza --icons'
+alias la='eza --icons -la --git'
+alias lt='eza --icons -la --sort=modified'
+alias tree='eza --icons --tree'
+
+# bat — syntax-highlighted cat
+export BAT_THEME="Dracula"
+alias cat='bat --paging=never'
+alias mkdirp='mkdir -p'
+
+# Plugins
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#3a4a5c"
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# fzf — fuzzy finder (Ctrl+R history, Ctrl+T file picker)
+export FZF_DEFAULT_OPTS="
+  --color=bg+:#1a2535,bg:#0d0f12,spinner:#00e8d8,hl:#ff6090
+  --color=fg:#8899aa,header:#e07aff,info:#ffd200,pointer:#00e8d8
+  --color=marker:#50ffaa,fg+:#ebebef,prompt:#00e8d8,hl+:#ff6090
+  --color=border:#1a2535
+  --prompt='▶ ' --pointer='→' --marker='✓'
+"
+source <(fzf --zsh)
+
+# zoxide — smart cd (use 'z' instead of 'cd')
+eval "$(zoxide init zsh)"
+
+# Starship
+eval "$(starship init zsh)"

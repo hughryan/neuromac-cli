@@ -1,0 +1,33 @@
+# neuromancer
+# Dark void with neon resonance. Cyberpunk / hacker / AI-age.
+# Near-black charcoal base, electric neon palette.
+
+background = #0d0f12
+foreground = #8899aa
+
+cursor-color = #00e8d8
+cursor-text = #0d0f12
+
+selection-background = #1e2a42
+selection-foreground = #eeeef2
+
+# --- 16-color ANSI palette ---
+# Normal
+palette = 0=#1a2535
+palette = 1=#ff2055
+palette = 2=#00ff85
+palette = 3=#ffd200
+palette = 4=#0080ff
+palette = 5=#c040f0
+palette = 6=#00e8d8
+palette = 7=#8892a0
+
+# Bright
+palette = 8=#1e2530
+palette = 9=#ff6090
+palette = 10=#50ffaa
+palette = 11=#ffe066
+palette = 12=#4db8ff
+palette = 13=#e07aff
+palette = 14=#44f5e5
+palette = 15=#ebebef
