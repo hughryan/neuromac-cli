@@ -24,7 +24,7 @@ A portable cyberpunk CLI toolkit for macOS. Dark void aesthetics, neon resonance
 
 - macOS (Apple Silicon — paths assume `/opt/homebrew`)
 - [Homebrew](https://brew.sh) installed
-- [Claude Code](https://claude.ai/code) installed (recommended for reconciliation — see below)
+- An AI coding agent installed (recommended for reconciliation — see below): [Claude Code](https://claude.ai/code), [Codex](https://openai.com/codex), Cursor, etc.
 
 ### 2. Clone
 
@@ -39,20 +39,13 @@ cd ~/dev/neuromac-cli
 brew bundle
 ```
 
-### 4. Apply configs (recommended: Claude Code)
+### 4. Apply configs (recommended: AI agent)
 
-The cleanest way to adopt these configs is to let Claude Code reconcile them against your existing setup:
+The cleanest way to adopt these configs is to let an AI coding agent reconcile them against your existing setup. Open this repo in Claude Code, Codex, or Cursor and say:
 
-```sh
-cd ~/dev/neuromac-cli
-claude
-```
+> I want to adopt neuromac-cli. Read the AGENTS.md file in this repo and help me reconcile the configs with my existing setup.
 
-Then tell Claude:
-
-> I want to adopt neuromac-cli. Read the CLAUDE.md file in this repo and help me reconcile the configs with my existing setup.
-
-Claude will inspect your current dotfiles, identify conflicts, and guide you through the merge — preserving your personal settings while applying the neuromancer theme and tooling.
+The agent will inspect your current dotfiles, identify conflicts, and guide you through the merge — preserving your personal settings while applying the neuromancer theme and tooling.
 
 ### 4b. Manual apply (advanced)
 
