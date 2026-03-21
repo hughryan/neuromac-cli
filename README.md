@@ -146,6 +146,16 @@ The settings file covers theme, color customizations, token colors, and font. It
 
 ---
 
+## AI CLI tools
+
+AI coding agents that run in the terminal (Claude Code, Codex CLI, etc.) need to be configured to use your terminal's color scheme rather than their own built-in theme. Without this, they render with colors that clash with the neuromancer palette.
+
+**Claude Code** — run `/theme` inside Claude Code and select **ANSI Dark**. This tells Claude Code to use the terminal's ANSI palette (i.e. the neuromancer colors) instead of hardcoded values.
+
+Other terminal AI tools typically have a similar setting — look for "ANSI", "terminal", or "system" theme options.
+
+---
+
 ## What this does NOT include
 
 Things that are intentionally excluded (add them yourself or use a personal dotfiles layer on top):

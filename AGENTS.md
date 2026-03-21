@@ -67,13 +67,21 @@ ls ~/Library/Fonts/MonaspaceNeonNF* 2>/dev/null || fc-list | grep -i "monaspace 
 
 If missing, it should have been installed by `brew bundle`. If not, guide them to install the `font-monaspice-nerd-font` cask or download from https://github.com/githubnext/monaspace/releases.
 
-### 6. Verify
+### 6. AI CLI tool theme
+
+If the user has Claude Code or another AI CLI tool installed, instruct them to set its theme to **ANSI Dark** (or equivalent). This makes the tool use the terminal's neuromancer palette instead of its own hardcoded colors.
+
+- **Claude Code**: run `/theme` and select **ANSI Dark**
+- Other tools: look for an "ANSI", "terminal", or "system" theme option
+
+### 7. Verify
 
 After applying:
 - Open a new Ghostty window and confirm the neuromancer theme loads
 - Run `hx` and confirm the theme applies
 - Run `ls` and confirm eza with icons works
 - Run `git diff` in any repo to confirm delta is active
+- If Claude Code is installed: confirm it's using ANSI Dark theme
 
 ## Key config locations in this repo
 
