@@ -10,7 +10,8 @@ A portable cyberpunk CLI toolkit for macOS. Dark void aesthetics, neon resonance
 - **bat** — syntax-highlighted `cat` replacement
 - **eza** — modern `ls` with icons and git status
 - **git-delta** — beautiful git diffs with neuromancer colors
-- **fzf** — fuzzy finder (Ctrl+R history, Ctrl+T file picker)
+- **atuin** — shell history search (Ctrl+R and up-arrow) backed by SQLite
+- **fzf** — fuzzy finder (Ctrl+T file picker, path completion)
 - **zoxide** — smart `cd` that learns your habits (`z` command)
 - **asdf** — universal version manager
 - **jq / yq** — JSON and YAML processing
@@ -153,6 +154,16 @@ AI coding agents that run in the terminal (Claude Code, Codex CLI, etc.) need to
 **Claude Code** — run `/theme` inside Claude Code and select **ANSI Dark**. This tells Claude Code to use the terminal's ANSI palette (i.e. the neuromancer colors) instead of hardcoded values.
 
 Other terminal AI tools typically have a similar setting — look for "ANSI", "terminal", or "system" theme options.
+
+---
+
+## Shell startup performance
+
+The `config/zshrc` is optimized to keep shell startup fast:
+
+- **Homebrew** — `brew shellenv` is guarded with a `HOMEBREW_PREFIX` check and skipped when already initialized (e.g. by `/etc/zprofile` in login shells), avoiding a Ruby subprocess on every shell start.
+- **zsh-autosuggestions, zsh-syntax-highlighting, fzf** — compiled to `.zwc` bytecode on first load via `zcompile`; zsh sources the compiled version automatically on subsequent shells.
+- **atuin, zoxide, starship** — init scripts are cached to `~/.cache/zsh/` (also compiled to `.zwc`) and regenerated automatically when the binary changes (e.g. after `brew upgrade`).
 
 ---
 

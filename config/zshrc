@@ -1,5 +1,9 @@
-# Homebrew
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# Homebrew — skip if brew is already on PATH (avoids spawning a Ruby process each shell).
+if ! command -v brew &>/dev/null; then
+  if   [[ -x /opt/homebrew/bin/brew ]]; then eval "$(/opt/homebrew/bin/brew shellenv)"  # Apple Silicon
+  elif [[ -x /usr/local/bin/brew    ]]; then eval "$(/usr/local/bin/brew shellenv)"      # Intel
+  fi
+fi
 
 # asdf
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
@@ -21,12 +25,37 @@ export BAT_THEME="Dracula"
 alias cat='bat --paging=never'
 alias mkdirp='mkdir -p'
 
+_zsh_cache_dir="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
+
+# Compile a static source file in-place if not already compiled or stale.
+# zsh automatically uses the .zwc when sourcing the .zsh, no path changes needed.
+_source_compiled() {
+  local src="$1"
+  [[ ! -f "${src}.zwc" || "$src" -nt "${src}.zwc" ]] && zcompile "$src" 2>/dev/null
+  source "$src"
+}
+
+# Cache slow tool init scripts; regenerate only when the binary changes.
+# Compiles the cache to .zwc so subsequent shells parse bytecode, not text.
+_init_cached() {
+  local bin cache
+  bin="$(command -v "$1")" || return 1
+  cache="$_zsh_cache_dir/${1}-init.zsh"
+  if [[ ! -f "$cache" || "$bin" -nt "$cache" ]]; then
+    mkdir -p "$_zsh_cache_dir"
+    "$bin" "${@:2}" > "$cache"
+    zcompile "$cache" 2>/dev/null
+  fi
+  source "$cache"
+}
+
 # Plugins
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#3a4a5c"
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+_source_compiled "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+_source_compiled "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
-# fzf — fuzzy finder (Ctrl+R history, Ctrl+T file picker)
+# fzf — fuzzy finder (Ctrl+T file picker, Alt+C directory jump, tab completion)
+# Source static files directly — no subprocess, compiled on first load.
 export FZF_DEFAULT_OPTS="
   --color=bg+:#1a2535,bg:#0d0f12,spinner:#00e8d8,hl:#ff6090
   --color=fg:#8899aa,header:#e07aff,info:#ffd200,pointer:#00e8d8
@@ -34,10 +63,14 @@ export FZF_DEFAULT_OPTS="
   --color=border:#1a2535
   --prompt='▶ ' --pointer='→' --marker='✓'
 "
-source <(fzf --zsh)
+_source_compiled "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.zsh"
+_source_compiled "$HOMEBREW_PREFIX/opt/fzf/shell/completion.zsh"
+
+# atuin — shell history search (Ctrl+R and up-arrow)
+_init_cached atuin init zsh
 
 # zoxide — smart cd (use 'z' instead of 'cd')
-eval "$(zoxide init zsh)"
+_init_cached zoxide init zsh
 
 # Starship
-eval "$(starship init zsh)"
+_init_cached starship init zsh
