@@ -175,7 +175,6 @@ format = "[$symbol$context]($style) "
 
 ### Version manager gotchas
 
-- **pyenv**: if `pyenv` is installed but no global version is set, shims time out. Fix: `export PYENV_VERSION=system` in `~/.zshenv`.
 - **uv**: does not set `PYENV_VERSION`. The `pyenv_prefix` field in the Python module will be empty — that's fine.
 - **nvm**: lazy-loaded nvm won't expose a Node version to starship unless nvm is fully initialized. Consider eager-loading nvm or using asdf for Node.
 

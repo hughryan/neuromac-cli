@@ -129,11 +129,6 @@ style  = "bold #ffe066"
 format = "[${symbol}${pyenv_prefix}(${version})( \\($virtualenv\\))]($style) "
 ```
 
-If you use `uv` or another tool that doesn't set `PYENV_VERSION`, you may need:
-```sh
-export PYENV_VERSION=system  # in ~/.zshenv or your personal zshrc
-```
-
 ---
 
 ## VS Code
