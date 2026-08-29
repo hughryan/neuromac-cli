@@ -82,6 +82,7 @@ After applying:
 - Run `eza -la --git` and confirm icons and git status render
 - Run `git diff` in any repo to confirm delta is active
 - Press Ctrl+R and confirm fzf's history search opens
+- Run `./scripts/verify-config.sh` from the repo — it should report `0 failed`
 - If Claude Code is installed: confirm it's using ANSI Dark theme
 
 ## Key config locations in this repo
@@ -101,6 +102,8 @@ config/
   gitconfig                   # git settings (includes ~/.gitconfig-personal)
   gitignore_global            # global gitignore
   vimrc                       # minimal vim fallback
+scripts/
+  verify-config.sh            # smoke test: run after changing config/zshrc
 Brewfile                      # all packages
 AGENTS.md                     # this file (CLAUDE.md symlinks here)
 ```

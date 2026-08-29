@@ -145,10 +145,10 @@ run_zsh interactive '
   print -r -- "##K PRECMD=${precmd_functions[*]}"
   print -r -- "##K AUTOSUGGEST=${+functions[_zsh_autosuggest_start]}"
   print -r -- "##K ZOXIDE=${+functions[z]}"
-  print -r -- "##K ATUIN=${+functions[_atuin_search_widget]}"
+  print -r -- "##K CTRL_R=$(bindkey '^R')"
   print -r -- "##K HAVE_STARSHIP=${+commands[starship]}"
   print -r -- "##K HAVE_ZOXIDE=${+commands[zoxide]}"
-  print -r -- "##K HAVE_ATUIN=${+commands[atuin]}"
+  print -r -- "##K HAVE_FZF=${+commands[fzf]}"
   [[ -r $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]] \
     && print -r -- "##K HAVE_AUTOSUGGEST=1" || print -r -- "##K HAVE_AUTOSUGGEST=0"
 '
@@ -183,12 +183,14 @@ else
     skip "zoxide not installed (\`z\`)"
   fi
 
-  if [[ $(probe_val HAVE_ATUIN) == 1 ]]; then
-    [[ $(probe_val ATUIN) == 1 ]] \
-      && ok "_atuin_search_widget is defined" \
-      || fail "_atuin_search_widget is not defined"
+  # The adoption guide tells users to verify Ctrl+R opens fzf's history search.
+  # atuin used to claim that binding; assert whatever the docs currently promise.
+  if [[ $(probe_val HAVE_FZF) == 1 ]]; then
+    [[ $(probe_val CTRL_R) == *fzf-history-widget* ]] \
+      && ok "Ctrl+R is bound to fzf-history-widget" \
+      || fail "Ctrl+R is bound to $(probe_val CTRL_R), expected fzf-history-widget"
   else
-    skip "atuin not installed (_atuin_search_widget)"
+    skip "fzf not installed (Ctrl+R binding)"
   fi
 fi
 
