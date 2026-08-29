@@ -1,0 +1,3 @@
+
+# Lead-managed subagent worktrees (see CLAUDE.md orchestrator pattern)
+.claude/worktrees/
