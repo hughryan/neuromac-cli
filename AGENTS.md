@@ -9,6 +9,7 @@ A portable macOS CLI toolkit with a unified cyberpunk "neuromancer" theme across
 - Helix editor
 - Starship prompt
 - bat, eza, fzf, zoxide, git-delta
+- Claude Code (custom theme JSON)
 
 No personal data. No cloud SDK config. No language-specific tooling. Safe to adopt on any developer machine.
 
