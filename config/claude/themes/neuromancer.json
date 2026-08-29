@@ -7,11 +7,11 @@
     "inactive": "#8892a0",
     "inactiveShimmer": "#b0bac8",
     "subtle": "#3a4556",
-    "suggestion": "#4db8ff",
+    "suggestion": "#00e8d8",
     "remember": "#c040f0",
 
-    "claude": "#e07aff",
-    "claudeShimmer": "#f2b8ff",
+    "claude": "#ff6090",
+    "claudeShimmer": "#00e8d8",
 
     "success": "#50ffaa",
     "warning": "#ffe066",

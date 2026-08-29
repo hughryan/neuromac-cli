@@ -1,7 +1,7 @@
 theme = neuromancer
 
 font-family = "Monaspace Neon NF"
-font-size = 13
+font-size = 15
 font-thicken = false
 
 copy-on-select = clipboard
