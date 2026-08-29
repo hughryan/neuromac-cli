@@ -7,8 +7,8 @@ A portable cyberpunk CLI toolkit for macOS. Dark void aesthetics, neon resonance
 - **Helix** — modal terminal editor, neuromancer-themed
 - **VS Code** — neuromancer color + token theme, Monaspace Neon NF font
 - **Starship** — fast, minimal prompt with neuromancer colors
-- **bat** — syntax-highlighted `cat` replacement
-- **eza** — modern `ls` with icons and git status
+- **bat** — syntax-highlighted file viewer (`bat FILE`)
+- **eza** — modern directory lister with icons and git status (`eza -la --git`)
 - **git-delta** — beautiful git diffs with neuromancer colors
 - **atuin** — shell history search (Ctrl+R and up-arrow) backed by SQLite
 - **fzf** — fuzzy finder (Ctrl+T file picker, path completion)
@@ -17,6 +17,11 @@ A portable cyberpunk CLI toolkit for macOS. Dark void aesthetics, neon resonance
 - **jq / yq** — JSON and YAML processing
 - **Monaspace Neon NF** — the font that makes it all look right
 - **zsh-autosuggestions + zsh-syntax-highlighting** — shell quality of life
+
+> **Note:** `bat` and `eza` are installed but deliberately **not** aliased over
+> `cat` and `ls`. They are not drop-in replacements, and shadowing coreutils
+> breaks scripts, CI, and AI CLI agents that drive the shell. Invoke them by
+> name. See [Why `ls` and `cat` are not aliased](AGENTS.md#why-ls-and-cat-are-not-aliased).
 
 ---
 

@@ -14,16 +14,19 @@ export PATH="$HOME/.local/bin:$PATH"
 bindkey "^[[H" beginning-of-line  # Fn+Left  (Home)
 bindkey "^[[F" end-of-line        # Fn+Right (End)
 
-# Aliases — navigation
-alias ls='eza --icons'
-alias la='eza --icons -la --git'
-alias lt='eza --icons -la --sort=modified'
-alias tree='eza --icons --tree'
-
-# bat — syntax-highlighted cat
-export BAT_THEME="Dracula"
-alias cat='bat --paging=never'
+# Aliases
+# Deliberately nothing aliased over ls, cat, or tree. eza and bat are not
+# drop-in replacements, and shadowing coreutils breaks every non-interactive
+# caller — scripts, CI, and AI CLI agents that drive the shell. eza is the
+# sharp edge: given no path argument it reads file names from stdin, so a bare
+# `ls` blocks forever when stdin is a pipe (eza#1568); `--icons` swallows the
+# following argument unless written `--icons=auto` (eza#1864); and -h, -S, -t,
+# -G, -n, -o, -g all mean something other than what ls means by them.
+# Invoke `eza` and `bat` by name instead.
 alias mkdirp='mkdir -p'
+
+# bat — syntax-highlighted file viewer, used directly (`bat FILE`)
+export BAT_THEME="Dracula"
 
 _zsh_cache_dir="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
 

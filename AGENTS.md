@@ -52,7 +52,7 @@ For each config that already exists, diff it against the version in this repo. H
   ```zsh
   source ~/dev/neuromac-cli/config/zshrc
   ```
-  Place this near the top, before their personal config. Remove any duplicated settings (eza aliases, bat alias, fzf config, zoxide, atuin, starship init — neuromac-cli handles all of these).
+  Place this near the top, before their personal config. Remove any duplicated settings (fzf config, zoxide, atuin, starship init — neuromac-cli handles all of these). If they alias `ls` to eza or `cat` to bat, recommend removing those aliases and explain why (see "Why `ls` and `cat` are not aliased" below).
 - For **gitconfig**: symlink neuromac-cli's gitconfig as `~/.gitconfig`, then create `~/.gitconfig-personal` with the user's `[user]` block. The neuromac-cli gitconfig `[include]`s this file.
 - For **Ghostty config**: if they have personal settings (window size, working directory, etc.), preserve them. The theme and font settings can be adopted directly.
 - For **Helix**: safe to replace if they don't have customizations. If they do, merge the theme and key settings.
@@ -89,7 +89,7 @@ If the user has Claude Code or another AI CLI tool installed, instruct them to s
 After applying:
 - Open a new Ghostty window and confirm the neuromancer theme loads
 - Run `hx` and confirm the theme applies
-- Run `ls` and confirm eza with icons works
+- Run `eza -la --git` and confirm icons and git status render
 - Run `git diff` in any repo to confirm delta is active
 - Press Ctrl+R and confirm atuin's search UI opens
 - If Claude Code is installed: confirm it's using ANSI Dark theme
@@ -177,6 +177,51 @@ format = "[$symbol$context]($style) "
 
 - **uv**: does not set `PYENV_VERSION`. The `pyenv_prefix` field in the Python module will be empty — that's fine.
 - **nvm**: lazy-loaded nvm won't expose a Node version to starship unless nvm is fully initialized. Consider eager-loading nvm or using asdf for Node.
+
+## Why `ls` and `cat` are not aliased
+
+This repo installs `eza` and `bat` but does **not** alias them over `ls` and
+`cat`. This is deliberate. Do not "helpfully" add those aliases back, and if a
+user already has them, recommend removing them.
+
+Shadowing a coreutil affects every shell that sources the config, not just an
+interactive one — zsh expands aliases in non-interactive shells too (unlike
+bash). So the alias reaches scripts, CI jobs, and AI CLI agents driving the
+shell, none of which have a TTY. `eza` breaks in three ways under exactly those
+conditions:
+
+1. **A bare `ls` hangs forever.** Given no path argument, eza reads file names
+   from stdin even without `--stdin`. Interactively stdin is a TTY so it lists
+   the directory; when stdin is a pipe it blocks until the caller times out.
+   With stdin closed it instead prints nothing and exits 0 — silently reporting
+   a directory as empty. ([eza#1568](https://github.com/eza-community/eza/issues/1568))
+2. **`ls <file>` errors.** `--icons` takes an *optional* value, so it swallows
+   the next positional argument: `ls config` becomes
+   `error: invalid value 'config' for '--icons [<WHEN>]'`. Writing
+   `--icons=auto` avoids it. Same for `--classify`/`-F`, `--color`,
+   `--hyperlink`, `--absolute`.
+   ([eza#1864](https://github.com/eza-community/eza/issues/1864))
+3. **Flags silently mean different things.** `-h` is `--header`, not
+   human-readable. `-S` is block size, not sort-by-size. `-G` is grid, not
+   no-group. `-t` and `-s` now require a value, so `ls -lt` errors. `-n`, `-o`,
+   `-g`, `-m`, `-u`, `-T` all differ from GNU/BSD `ls`, and `-p`, `-c`, `-k`,
+   `-Q` do not exist. A single `-a` omits `.`/`..`, unlike real `ls`.
+   ([eza#1740](https://github.com/eza-community/eza/issues/1740))
+
+`bat` degrades more gracefully — it drops to plain output when not on a TTY —
+but it is still not `cat`: it formats errors differently, refuses some binary
+input, and is slower. The same reasoning applies.
+
+If a user wants short forms in their own interactive shell, that belongs in
+their personal config, guarded on `[[ -o interactive ]]`, with the attached
+value form:
+
+```zsh
+if [[ -o interactive ]]; then
+  alias l='eza --icons=auto'
+  alias ll='eza --icons=auto -la --git'
+fi
+```
 
 ## What NOT to touch
 
