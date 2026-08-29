@@ -3,7 +3,7 @@
 # Near-black charcoal base, electric neon palette.
 
 background = #0d0f12
-foreground = #8899aa
+foreground = #a8b4c2
 
 cursor-color = #00e8d8
 cursor-text = #0d0f12
@@ -27,7 +27,7 @@ palette = 8=#1e2530
 palette = 9=#ff6090
 palette = 10=#50ffaa
 palette = 11=#ffe066
-palette = 12=#4db8ff
+palette = 12=#00e8d8
 palette = 13=#e07aff
 palette = 14=#44f5e5
 palette = 15=#ebebef

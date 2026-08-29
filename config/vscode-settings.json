@@ -10,17 +10,17 @@
     "workbench.colorCustomizations": {
         "[One Dark Pro]": {
             "editor.background":                    "#0d0f12",
-            "editor.foreground":                    "#8899aa",
+            "editor.foreground":                    "#a8b4c2",
             "editor.lineHighlightBackground":       "#1a2535",
             "editor.selectionBackground":           "#1e2a42",
             "editor.inactiveSelectionBackground":   "#1a2535",
             "editorCursor.foreground":              "#00e8d8",
             "editorLineNumber.foreground":          "#3a4a5c",
-            "editorLineNumber.activeForeground":    "#8899aa",
+            "editorLineNumber.activeForeground":    "#a8b4c2",
             "activityBar.background":               "#0a0c0f",
-            "activityBar.foreground":               "#8899aa",
+            "activityBar.foreground":               "#a8b4c2",
             "sideBar.background":                   "#0a0c0f",
-            "sideBar.foreground":                   "#8899aa",
+            "sideBar.foreground":                   "#a8b4c2",
             "sideBarSectionHeader.background":      "#0d0f12",
             "editorGroupHeader.tabsBackground":     "#0a0c0f",
             "tab.activeBackground":                 "#0d0f12",
@@ -28,14 +28,14 @@
             "tab.activeForeground":                 "#ebebef",
             "tab.inactiveForeground":               "#3a4a5c",
             "titleBar.activeBackground":            "#0a0c0f",
-            "titleBar.activeForeground":            "#8899aa",
+            "titleBar.activeForeground":            "#a8b4c2",
             "titleBar.inactiveBackground":          "#0a0c0f",
             "statusBar.background":                 "#0a0c0f",
-            "statusBar.foreground":                 "#8899aa",
+            "statusBar.foreground":                 "#a8b4c2",
             "statusBar.noFolderBackground":         "#0a0c0f",
             "panel.background":                     "#0d0f12",
             "terminal.background":                  "#0d0f12",
-            "terminal.foreground":                  "#8899aa"
+            "terminal.foreground":                  "#a8b4c2"
         }
     },
 
@@ -72,7 +72,7 @@
                 },
                 {
                     "scope": ["variable", "variable.other"],
-                    "settings": { "foreground": "#8899aa" }
+                    "settings": { "foreground": "#a8b4c2" }
                 }
             ]
         }

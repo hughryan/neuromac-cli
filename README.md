@@ -150,7 +150,14 @@ The settings file covers theme, color customizations, token colors, and font. It
 
 AI coding agents that run in the terminal (Claude Code, Codex CLI, etc.) need to be configured to use your terminal's color scheme rather than their own built-in theme. Without this, they render with colors that clash with the neuromancer palette.
 
-**Claude Code** — run `/theme` inside Claude Code and select **ANSI Dark**. This tells Claude Code to use the terminal's ANSI palette (i.e. the neuromancer colors) instead of hardcoded values.
+**Claude Code** — ships a custom theme at `config/claude/themes/neuromancer.json`. It starts from Claude Code's built-in **ANSI Dark** preset (so the 16 ANSI slots come from the Ghostty palette) and overrides the named colour tokens Claude Code exposes on top — brighter body text than the terminal foreground, the purple assistant accent, the green/amber/pink status trio, cyan permission borders, deep green/pink diff backgrounds and palette-matched subagent colours.
+
+```sh
+mkdir -p ~/.claude/themes
+ln -sf "$(pwd)/config/claude/themes/neuromancer.json" ~/.claude/themes/neuromancer.json
+```
+
+Then run `/theme` inside Claude Code and pick **Neuromancer**, or set `"theme": "custom:neuromancer"` in `~/.claude/settings.json`. Claude Code hot-reloads the file on edit, so tune colours live; if `~/.claude/themes/` did not exist when Claude Code started, restart it once. Token names are documented at https://code.claude.com/docs/en/terminal-config#create-a-custom-theme.
 
 Other terminal AI tools typically have a similar setting — look for "ANSI", "terminal", or "system" theme options.
 

@@ -27,7 +27,7 @@ export BAT_THEME="Dracula"
 # fzf — theme applies whenever fzf is invoked, including from a script.
 export FZF_DEFAULT_OPTS="
   --color=bg+:#1a2535,bg:#0d0f12,spinner:#00e8d8,hl:#ff6090
-  --color=fg:#8899aa,header:#e07aff,info:#ffd200,pointer:#00e8d8
+  --color=fg:#a8b4c2,header:#e07aff,info:#ffd200,pointer:#00e8d8
   --color=marker:#50ffaa,fg+:#ebebef,prompt:#00e8d8,hl+:#ff6090
   --color=border:#1a2535
   --prompt='▶ ' --pointer='→' --marker='✓'
