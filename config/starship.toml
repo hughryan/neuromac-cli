@@ -61,6 +61,6 @@ show_milliseconds = false
 
 [time]
 disabled    = false
-style       = "dimmed #8899aa"
+style       = "dimmed #a8b4c2"
 format      = "[$time]($style)"
 time_format = "%H:%M"
