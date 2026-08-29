@@ -4,8 +4,8 @@
   "overrides": {
     "text": "#c8d4e0",
     "inverseText": "#0d0f12",
-    "inactive": "#8892a0",
-    "inactiveShimmer": "#b0bac8",
+    "inactive": "#6e7888",
+    "inactiveShimmer": "#98a2b0",
     "subtle": "#3a4556",
     "suggestion": "#00e8d8",
     "remember": "#c040f0",
