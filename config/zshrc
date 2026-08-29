@@ -10,10 +10,6 @@ export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
 export PATH="$HOME/.local/bin:$PATH"
 
-# Key bindings
-bindkey "^[[H" beginning-of-line  # Fn+Left  (Home)
-bindkey "^[[F" end-of-line        # Fn+Right (End)
-
 # Aliases
 # Deliberately nothing aliased over ls, cat, or tree. eza and bat are not
 # drop-in replacements, and shadowing coreutils breaks every non-interactive
@@ -28,37 +24,7 @@ alias mkdirp='mkdir -p'
 # bat — syntax-highlighted file viewer, used directly (`bat FILE`)
 export BAT_THEME="Dracula"
 
-_zsh_cache_dir="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
-
-# Compile a static source file in-place if not already compiled or stale.
-# zsh automatically uses the .zwc when sourcing the .zsh, no path changes needed.
-_source_compiled() {
-  local src="$1"
-  [[ ! -f "${src}.zwc" || "$src" -nt "${src}.zwc" ]] && zcompile "$src" 2>/dev/null
-  source "$src"
-}
-
-# Cache slow tool init scripts; regenerate only when the binary changes.
-# Compiles the cache to .zwc so subsequent shells parse bytecode, not text.
-_init_cached() {
-  local bin cache
-  bin="$(command -v "$1")" || return 1
-  cache="$_zsh_cache_dir/${1}-init.zsh"
-  if [[ ! -f "$cache" || "$bin" -nt "$cache" ]]; then
-    mkdir -p "$_zsh_cache_dir"
-    "$bin" "${@:2}" > "$cache"
-    zcompile "$cache" 2>/dev/null
-  fi
-  source "$cache"
-}
-
-# Plugins
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#3a4a5c"
-_source_compiled "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-_source_compiled "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-
-# fzf — fuzzy finder (Ctrl+T file picker, Alt+C directory jump, tab completion)
-# Source static files directly — no subprocess, compiled on first load.
+# fzf — theme applies whenever fzf is invoked, including from a script.
 export FZF_DEFAULT_OPTS="
   --color=bg+:#1a2535,bg:#0d0f12,spinner:#00e8d8,hl:#ff6090
   --color=fg:#8899aa,header:#e07aff,info:#ffd200,pointer:#00e8d8
@@ -66,14 +32,60 @@ export FZF_DEFAULT_OPTS="
   --color=border:#1a2535
   --prompt='▶ ' --pointer='→' --marker='✓'
 "
-_source_compiled "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.zsh"
-_source_compiled "$HOMEBREW_PREFIX/opt/fzf/shell/completion.zsh"
 
-# atuin — shell history search (Ctrl+R and up-arrow)
-_init_cached atuin init zsh
+# ── Interactive-only ────────────────────────────────────────────────────────
+# Everything below drives zle, the prompt, or shell history: it exists for a
+# human at a terminal. zsh runs this file for non-interactive shells too
+# (scripts, CI, AI CLI agents), where none of it has any effect but all of it
+# still costs — roughly 20ms per shell, paid on every command such a caller
+# runs. atuin and zoxide are guarded for a second reason: their hooks would
+# otherwise record machine activity into the history and frecency databases
+# that exist to model what the human does.
+if [[ -o interactive ]]; then
+  # Key bindings
+  bindkey "^[[H" beginning-of-line  # Fn+Left  (Home)
+  bindkey "^[[F" end-of-line        # Fn+Right (End)
 
-# zoxide — smart cd (use 'z' instead of 'cd')
-_init_cached zoxide init zsh
+  _zsh_cache_dir="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
 
-# Starship
-_init_cached starship init zsh
+  # Compile a static source file in-place if not already compiled or stale.
+  # zsh automatically uses the .zwc when sourcing the .zsh, no path changes needed.
+  _source_compiled() {
+    local src="$1"
+    [[ ! -f "${src}.zwc" || "$src" -nt "${src}.zwc" ]] && zcompile "$src" 2>/dev/null
+    source "$src"
+  }
+
+  # Cache slow tool init scripts; regenerate only when the binary changes.
+  # Compiles the cache to .zwc so subsequent shells parse bytecode, not text.
+  _init_cached() {
+    local bin cache
+    bin="$(command -v "$1")" || return 1
+    cache="$_zsh_cache_dir/${1}-init.zsh"
+    if [[ ! -f "$cache" || "$bin" -nt "$cache" ]]; then
+      mkdir -p "$_zsh_cache_dir"
+      "$bin" "${@:2}" > "$cache"
+      zcompile "$cache" 2>/dev/null
+    fi
+    source "$cache"
+  }
+
+  # Plugins
+  ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#3a4a5c"
+  _source_compiled "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+  _source_compiled "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+  # fzf — fuzzy finder (Ctrl+T file picker, Alt+C directory jump, tab completion)
+  # Source static files directly — no subprocess, compiled on first load.
+  _source_compiled "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.zsh"
+  _source_compiled "$HOMEBREW_PREFIX/opt/fzf/shell/completion.zsh"
+
+  # atuin — shell history search (Ctrl+R and up-arrow)
+  _init_cached atuin init zsh
+
+  # zoxide — smart cd (use 'z' instead of 'cd')
+  _init_cached zoxide init zsh
+
+  # Starship
+  _init_cached starship init zsh
+fi
