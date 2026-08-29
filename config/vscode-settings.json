@@ -79,7 +79,7 @@
     },
 
     // ── Font ───────────────────────────────────────────────────────────────
-    "editor.fontFamily": "MonaspaceNeonNF-Regular, Menlo, Monaco, monospace",
+    "editor.fontFamily": "Monaspace Neon NF, Menlo, Monaco, monospace",
     "editor.fontSize": 14,
     "editor.fontLigatures": true
 }
