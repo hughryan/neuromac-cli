@@ -10,8 +10,7 @@ A portable cyberpunk CLI toolkit for macOS. Dark void aesthetics, neon resonance
 - **bat** — syntax-highlighted file viewer (`bat FILE`)
 - **eza** — modern directory lister with icons and git status (`eza -la --git`)
 - **git-delta** — beautiful git diffs with neuromancer colors
-- **atuin** — shell history search (Ctrl+R and up-arrow) backed by SQLite
-- **fzf** — fuzzy finder (Ctrl+T file picker, path completion)
+- **fzf** — fuzzy finder (Ctrl+R history search, Ctrl+T file picker, path completion)
 - **zoxide** — smart `cd` that learns your habits (`z` command)
 - **asdf** — universal version manager
 - **jq / yq** — JSON and YAML processing
@@ -163,7 +162,7 @@ The `config/zshrc` is optimized to keep shell startup fast:
 
 - **Homebrew** — `brew shellenv` is guarded with a `HOMEBREW_PREFIX` check and skipped when already initialized (e.g. by `/etc/zprofile` in login shells), avoiding a Ruby subprocess on every shell start.
 - **zsh-autosuggestions, zsh-syntax-highlighting, fzf** — compiled to `.zwc` bytecode on first load via `zcompile`; zsh sources the compiled version automatically on subsequent shells.
-- **atuin, zoxide, starship** — init scripts are cached to `~/.cache/zsh/` (also compiled to `.zwc`) and regenerated automatically when the binary changes (e.g. after `brew upgrade`).
+- **zoxide, starship** — init scripts are cached to `~/.cache/zsh/` (also compiled to `.zwc`) and regenerated automatically when the binary changes (e.g. after `brew upgrade`).
 
 ---
 

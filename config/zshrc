@@ -38,9 +38,9 @@ export FZF_DEFAULT_OPTS="
 # human at a terminal. zsh runs this file for non-interactive shells too
 # (scripts, CI, AI CLI agents), where none of it has any effect but all of it
 # still costs — roughly 20ms per shell, paid on every command such a caller
-# runs. atuin and zoxide are guarded for a second reason: their hooks would
-# otherwise record machine activity into the history and frecency databases
-# that exist to model what the human does.
+# runs. zoxide is guarded for a second reason: its hook would otherwise record
+# machine activity into the frecency database that exists to model what the
+# human does.
 if [[ -o interactive ]]; then
   # Key bindings
   bindkey "^[[H" beginning-of-line  # Fn+Left  (Home)
@@ -79,9 +79,6 @@ if [[ -o interactive ]]; then
   # Source static files directly — no subprocess, compiled on first load.
   _source_compiled "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.zsh"
   _source_compiled "$HOMEBREW_PREFIX/opt/fzf/shell/completion.zsh"
-
-  # atuin — shell history search (Ctrl+R and up-arrow)
-  _init_cached atuin init zsh
 
   # zoxide — smart cd (use 'z' instead of 'cd')
   _init_cached zoxide init zsh

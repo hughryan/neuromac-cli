@@ -8,7 +8,7 @@ A portable macOS CLI toolkit with a unified cyberpunk "neuromancer" theme across
 - Ghostty terminal
 - Helix editor
 - Starship prompt
-- bat, eza, fzf, zoxide, atuin, git-delta
+- bat, eza, fzf, zoxide, git-delta
 
 No personal data. No cloud SDK config. No language-specific tooling. Safe to adopt on any developer machine.
 
@@ -52,7 +52,7 @@ For each config that already exists, diff it against the version in this repo. H
   ```zsh
   source ~/dev/neuromac-cli/config/zshrc
   ```
-  Place this near the top, before their personal config. Remove any duplicated settings (fzf config, zoxide, atuin, starship init — neuromac-cli handles all of these). If they alias `ls` to eza or `cat` to bat, recommend removing those aliases and explain why (see "Why `ls` and `cat` are not aliased" below).
+  Place this near the top, before their personal config. Remove any duplicated settings (fzf config, zoxide, starship init — neuromac-cli handles all of these). If they alias `ls` to eza or `cat` to bat, recommend removing those aliases and explain why (see "Why `ls` and `cat` are not aliased" below).
 - For **gitconfig**: symlink neuromac-cli's gitconfig as `~/.gitconfig`, then create `~/.gitconfig-personal` with the user's `[user]` block. The neuromac-cli gitconfig `[include]`s this file.
 - For **Ghostty config**: if they have personal settings (window size, working directory, etc.), preserve them. The theme and font settings can be adopted directly.
 - For **Helix**: safe to replace if they don't have customizations. If they do, merge the theme and key settings.
@@ -67,31 +67,21 @@ ls ~/Library/Fonts/MonaspaceNeonNF* 2>/dev/null || fc-list | grep -i "monaspace 
 
 If missing, it should have been installed by `brew bundle`. If not, guide them to install the `font-monaspice-nerd-font` cask or download from https://github.com/githubnext/monaspace/releases.
 
-### 6. atuin history
-
-atuin starts recording new commands immediately after `brew bundle` — no import step is required. If the user wants their existing shell history available in atuin, offer to run:
-
-```sh
-atuin import auto
-```
-
-This imports from `~/.zsh_history` (or bash/fish equivalents). It is safe to skip.
-
-### 7. AI CLI tool theme
+### 6. AI CLI tool theme
 
 If the user has Claude Code or another AI CLI tool installed, instruct them to set its theme to **ANSI Dark** (or equivalent). This makes the tool use the terminal's neuromancer palette instead of its own hardcoded colors.
 
 - **Claude Code**: run `/theme` and select **ANSI Dark**
 - Other tools: look for an "ANSI", "terminal", or "system" theme option
 
-### 8. Verify
+### 7. Verify
 
 After applying:
 - Open a new Ghostty window and confirm the neuromancer theme loads
 - Run `hx` and confirm the theme applies
 - Run `eza -la --git` and confirm icons and git status render
 - Run `git diff` in any repo to confirm delta is active
-- Press Ctrl+R and confirm atuin's search UI opens
+- Press Ctrl+R and confirm fzf's history search opens
 - If Claude Code is installed: confirm it's using ANSI Dark theme
 
 ## Key config locations in this repo

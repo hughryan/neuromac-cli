@@ -4,7 +4,6 @@ brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 brew "zoxide"
 brew "fzf"
-brew "atuin"
 
 # Editor
 brew "helix"
