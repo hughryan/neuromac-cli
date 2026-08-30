@@ -16,7 +16,7 @@
     "success": "#50ffaa",
     "warning": "#ffe066",
     "warningShimmer": "#fff2b0",
-    "error": "#ff6090",
+    "error": "#ff2055",
     "merged": "#e07aff",
 
     "permission": "#00e8d8",
@@ -64,7 +64,7 @@
     "rainbow_violet": "#e07aff",
     "rainbow_violet_shimmer": "#f0b8ff",
 
-    "red_FOR_SUBAGENTS_ONLY": "#ff6090",
+    "red_FOR_SUBAGENTS_ONLY": "#ff2055",
     "blue_FOR_SUBAGENTS_ONLY": "#4db8ff",
     "green_FOR_SUBAGENTS_ONLY": "#50ffaa",
     "yellow_FOR_SUBAGENTS_ONLY": "#ffe066",
