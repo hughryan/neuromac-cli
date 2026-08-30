@@ -119,7 +119,8 @@ To add language modules, append them to your `~/.config/starship.toml` after the
 | neon cyan | `#00e8d8` | default / system |
 | neon green | `#50ffaa` | Node.js, Go |
 | neon amber | `#ffe066` | Python, warnings |
-| neon pink | `#ff6090` | Rust, errors |
+| neon red | `#ff2055` | errors, critical thresholds |
+| neon pink | `#ff6090` | Rust, accents, identity |
 | neon purple | `#e07aff` | Terraform, git branch |
 | neon blue | `#4db8ff` | Kubernetes, Docker |
 
