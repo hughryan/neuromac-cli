@@ -123,7 +123,8 @@ Full module reference: https://starship.rs/config/
 2. Add the module config block. Use neuromac-cli theme colors:
    - Python/warnings: `#ffe066` (neon amber)
    - Node.js/Go: `#50ffaa` (neon green)
-   - Rust/errors: `#ff6090` (neon pink)
+   - Errors/critical: `#ff2055` (neon red)
+   - Rust/accents: `#ff6090` (neon pink)
    - Kubernetes/Docker: `#4db8ff` (neon blue)
    - Terraform: `#e07aff` (neon purple)
 
